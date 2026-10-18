@@ -1,0 +1,10 @@
+qualification_code,title,trade,nsqf_level,source,competency_code,competency_title,mandatory,max_score,rubric,evidence_requirements
+ELEC-L4-001,Electrician (Domestic),Electrical,4,NCVET sample,C1,Install domestic wiring,yes,10,"0-3 unsafe; 4-6 needs supervision; 7-10 independent",Photo of completed wiring|Supervisor statement
+ELEC-L4-001,Electrician (Domestic),Electrical,4,NCVET sample,C2,Test and commission circuits,yes,10,"0-3 unsafe; 4-6 needs supervision; 7-10 independent",Test readings log
+ELEC-L4-001,Electrician (Domestic),Electrical,4,NCVET sample,C3,Apply electrical safety practices,yes,5,"0-2 unsafe; 3-5 safe",Video of safety demonstration
+PLUMB-L3-001,Plumber (General),Plumbing,3,NCVET sample,P1,Install pipework,yes,10,"0-3 poor; 4-6 adequate; 7-10 good",Photo of installed pipework
+PLUMB-L3-001,Plumber (General),Plumbing,3,NCVET sample,P2,Detect and repair leaks,no,10,,
+WELD-L4-001,Welder (Arc),Welding,4,NCVET sample,W1,Perform arc welding,yes,10,"0-3 poor; 4-6 adequate; 7-10 good",Weld sample photo
+WELD-L4-001,Welder (Arc),Welding,4,NCVET sample,W1,Inspect weld quality,yes,10,"0-3 poor; 4-6 adequate; 7-10 good",Inspection record
+CARP-L2-001,Carpenter,Carpentry,12,NCVET sample,K1,Cut and join timber,yes,abc,"0-5 poor; 6-10 good",Photo
+ELEC-L4-002,Electrician (Domestic),electrical,4,NCVET sample,C1,Install wiring,yes,10,"0-5 poor; 6-10 good",Photo

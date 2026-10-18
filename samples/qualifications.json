@@ -1,0 +1,15 @@
+[
+  {
+    "qualification_code": "MASON-L3-001",
+    "title": "Mason (General)",
+    "trade": "Construction",
+    "nsqf_level": 3,
+    "source": "NCVET sample",
+    "competencies": [
+      {"competency_code": "M1", "competency_title": "Lay brickwork", "mandatory": true, "max_score": 10,
+       "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Photo of wall", "Supervisor statement"]},
+      {"competency_code": "M2", "competency_title": "Mix mortar", "mandatory": false, "max_score": 5,
+       "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Demonstration video"]}
+    ]
+  }
+]

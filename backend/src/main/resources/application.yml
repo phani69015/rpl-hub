@@ -1,0 +1,34 @@
+spring:
+  config:
+    import: optional:file:../.env[.properties]
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/rplhub}
+    username: ${DB_USER:rplhub}
+    password: ${DB_PASSWORD:rplhub}
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 26MB
+
+server:
+  error:
+    include-message: always
+
+app:
+  temporal:
+    target: ${TEMPORAL_TARGET:localhost:7234}
+    namespace: default
+    worker-enabled: true
+  evidence:
+    dir: ${EVIDENCE_DIR:../data/evidence}
+  report:
+    gap-threshold-percent: 60   # a competency scoring below this % of max is listed as a skill gap
+  jwt:
+    secret: ${JWT_SECRET:dev-only-change-me-dev-only-change-me-32b}
+    ttl-hours: 8
+  otp:
+    mock-code: "123456"   # OTP is mocked until an SMS provider is chosen
+  bootstrap-admin-phone: ${BOOTSTRAP_ADMIN_PHONE:+919999999999}
+  anthropic:
+    api-key: ${ANTHROPIC_API_KEY:}
+    model: ${ANTHROPIC_MODEL:claude-sonnet-4-5}
