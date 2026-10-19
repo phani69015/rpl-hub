@@ -8,6 +8,7 @@ type Props = { id: string; role: api.Me['role']; me: api.Me | null; onBack: () =
 export default function CaseDetail({ id, role, me, onBack, online }: Props) {
   const { data: c, error, reload, setData } = useLoad(() => api.getCase(id), [id])
   const act = useAction()
+  const aiEnabled = useLoad(api.config).data?.aiEnabled
   useEffect(() => { const t = setInterval(reload, 5000); return () => clearInterval(t) }, [reload])
   if (!c) return <div><button className="ghost" onClick={onBack}>Back</button><Err text={error} /></div>
 
@@ -30,7 +31,10 @@ export default function CaseDetail({ id, role, me, onBack, online }: Props) {
       {c.suggestions.length > 0 && c.status !== 'DRAFT' && !c.qualification && role !== 'ASSESSOR' && (
         <>
           <h2>Suggested qualifications</h2>
-          <p className="INFO">AI suggestions are advisory. An administrator confirms the qualification.</p>
+          <p className="INFO">
+            {aiEnabled === false ? 'AI feature is turned off. These suggestions are keyword-based. ' : 'AI suggestions are advisory. '}
+            An administrator confirms the qualification.
+          </p>
           {c.suggestions.map(s => (
             <div className="card" key={s.versionId}>
               <b>{s.code} v{s.version}</b> – {s.title} <Badge text={`${Math.round(s.confidence * 100)}% (${s.source})`} kind={s.flagged ? 'warn' : 'good'} />
@@ -56,7 +60,7 @@ export default function CaseDetail({ id, role, me, onBack, online }: Props) {
           <h3>Assessor recommendation: {fmt(c.submission.recommendation)}</h3>
           <div className="pre">{c.submission.notes}</div>
           <h3>AI summary (advisory – not a certification decision)</h3>
-          <div className="ai pre">{c.submission.aiSummary ?? 'No AI summary available.'}</div>
+          <div className="ai pre">{aiEnabled === false ? 'AI feature is turned off.' : c.submission.aiSummary ?? 'No AI summary available.'}</div>
         </div>
       )}
       {c.status === 'AWAITING_DECISION' && staff && (me?.canDecide ? <Decision onDecide={(o, r) => apply(() => api.decide(c.id, o, r))} /> : <p className="INFO">Waiting for an authorised decision-maker.</p>)}

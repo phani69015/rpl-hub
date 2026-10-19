@@ -7,16 +7,25 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-/** Thin wrapper over the Anthropic client. Empty/unavailable when ANTHROPIC_API_KEY is not set. */
+/** Thin wrapper over the Anthropic client. Unavailable when app.ai.enabled is false or ANTHROPIC_API_KEY is not set. */
 @Component
 public class AiClient {
 
     private final AnthropicClient client;
     private final String model;
 
-    AiClient(@Value("${app.anthropic.api-key:}") String apiKey, @Value("${app.anthropic.model}") String model) {
-        this.client = apiKey.isBlank() ? null : AnthropicOkHttpClient.builder().apiKey(apiKey).build();
+    private final boolean enabled;
+
+    AiClient(@Value("${app.ai.enabled}") boolean enabled, @Value("${app.anthropic.api-key:}") String apiKey,
+             @Value("${app.anthropic.model}") String model) {
+        this.enabled = enabled;
+        this.client = !enabled || apiKey.isBlank() ? null : AnthropicOkHttpClient.builder().apiKey(apiKey).build();
         this.model = model;
+    }
+
+    /** The application.yml switch (app.ai.enabled); exposed to the frontend. */
+    public boolean enabled() {
+        return enabled;
     }
 
     public boolean available() {

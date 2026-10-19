@@ -1,3 +1,6 @@
+/** Backend base URL; empty in dev (Vite proxies /api). Set VITE_API_URL when the API is deployed separately. */
+const API = (import.meta.env.VITE_API_URL ?? '').replace(/\/$/, '') + '/api'
+
 let token = sessionStorage.getItem('token') ?? ''
 
 export const isSignedIn = () => !!token
@@ -11,7 +14,7 @@ export class ApiError extends Error {
 }
 
 async function raw(path: string, init: RequestInit = {}): Promise<Response> {
-  const res = await fetch('/api' + path, {
+  const res = await fetch(API + path, {
     ...init,
     headers: { ...(token ? { Authorization: `Bearer ${token}` } : {}), ...init.headers },
   })
@@ -72,6 +75,7 @@ export async function verifyOtp(phone: string, otp: string) {
   token = r.token
   sessionStorage.setItem('token', token)
 }
+export const config = () => call<{ aiEnabled: boolean }>('/config')
 export const me = () => call<Me>('/auth/me')
 
 export const getProfile = () => call<any>('/profile')

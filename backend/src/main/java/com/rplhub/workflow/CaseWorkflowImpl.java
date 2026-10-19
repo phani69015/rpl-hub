@@ -1,5 +1,9 @@
 package com.rplhub.workflow;
 
+import static com.rplhub.model.CaseStatus.DECIDED;
+import static com.rplhub.model.CaseStatus.NEW;
+import static com.rplhub.model.CaseStatus.REPORT_PENDING;
+
 import io.temporal.activity.ActivityOptions;
 import io.temporal.common.RetryOptions;
 import io.temporal.workflow.Workflow;
@@ -26,9 +30,9 @@ public class CaseWorkflowImpl implements CaseWorkflow {
     public void run(String caseId) {
         for (int i = 0; i < STEPS_PER_RUN; i++) {
             switch (activities.stage(caseId)) {
-                case "NEW" -> activities.match(caseId);
-                case "REPORT_PENDING" -> activities.generateReport(caseId);
-                case "DECIDED" -> { return; }
+                case NEW -> activities.match(caseId);
+                case REPORT_PENDING -> activities.generateReport(caseId);
+                case DECIDED -> { return; }
                 default -> {
                     // waiting on a human; the periodic wake-up also heals a missed signal
                     Workflow.await(Duration.ofHours(1), () -> advanced);
