@@ -1,0 +1,9 @@
+backend/.env
+frontend/.env
+backend/build/
+backend/.gradle/
+frontend/node_modules/
+frontend/dist/
+*.log
+.DS_Store
+backend/data/

@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/rpl-hub/sw.js', { scope: '/rpl-hub/' })})}
