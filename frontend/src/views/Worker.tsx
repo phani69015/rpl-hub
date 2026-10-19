@@ -3,7 +3,7 @@ import * as api from '../api'
 import * as off from '../offline'
 import CaseDetail from './CaseDetail'
 import Declaration from './Declaration'
-import { Badge, Err, StatusBadge, useAction, useLoad } from './common'
+import { Badge, CaseTable, Err, Loading, useAction, useLoad } from './common'
 
 export function SyncBadge({ d, online }: { d: off.LocalDraft; online: boolean }) {
   if (d.sync === 'synced') return <Badge text="synchronized" kind="good" />
@@ -55,13 +55,14 @@ export default function Worker({ online }: { online: boolean }) {
 
   return (
     <div>
-      <Profile />
-      <h2>My assessments</h2>
-      <button onClick={() => setEditing(blank())}>New declaration</button>
+      <div className="row between">
+        <h1>My assessments</h1>
+        <button onClick={() => setEditing(blank())}>New declaration</button>
+      </div>
       {pendingLocal.map(d => (
         <div className="card" key={d.id}>
           <div className="row"><b>{d.trade || '(no trade)'}</b> <SyncBadge d={d} online={online} /> {d.submit && <Badge text="submit requested" />}</div>
-          <div>{d.skills}</div>
+          <div className="muted">{d.skills}</div>
           {d.error && <p className="error">{d.error}</p>}
           {d.sync === 'conflict' && d.server && (
             <div className="banner">
@@ -76,23 +77,19 @@ export default function Worker({ online }: { online: boolean }) {
         </div>
       ))}
       <Err text={cases.error} />
-      <div className="table-wrap"><table>
-        <thead><tr><th>Case</th><th>Trade</th><th>Status</th><th /></tr></thead>
-        <tbody>
-          {(cases.data ?? []).filter(c => !localIds.has(c.id) || c.status !== 'DRAFT').map(c => (
-            <tr key={c.id}>
-              <td>{c.caseNumber}</td><td>{c.trade}</td><td><StatusBadge status={c.status} /></td>
-              <td>
+      {cases.data
+        ? <CaseTable cases={cases.data.filter(c => !localIds.has(c.id) || c.status !== 'DRAFT')} empty="You have no assessments yet. Start with a new declaration."
+            actions={c => (
+              <>
                 <button className="ghost" onClick={() => setOpenId(c.id)}>Open</button>
                 {c.status === 'DRAFT' && !localIds.has(c.id) && <button onClick={async () => {
                   const s = await api.getCase(c.id)
                   setEditing({ id: s.id, trade: s.trade, experienceYears: s.experienceYears, skills: s.skills, details: s.details ?? '', baseVersion: s.version, submit: false, sync: 'pending', updatedAt: 0 })
                 }}>Edit</button>}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table></div>
+              </>
+            )} />
+        : !cases.error && <Loading />}
+      <Profile />
     </div>
   )
 }

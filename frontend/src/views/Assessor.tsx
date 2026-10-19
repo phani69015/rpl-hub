@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import * as api from '../api'
 import CaseDetail from './CaseDetail'
-import { Err, StatusBadge, useLoad } from './common'
+import { CaseTable, Err, Loading, useLoad } from './common'
 
 export default function Assessor({ me }: { me: api.Me }) {
   const [open, setOpen] = useState<string>()
@@ -9,15 +9,14 @@ export default function Assessor({ me }: { me: api.Me }) {
   if (open) return <CaseDetail id={open} role="ASSESSOR" me={me} online onBack={() => { setOpen(undefined); list.reload() }} />
   return (
     <div>
-      <h2>My assigned assessments</h2>
-      <button className="ghost" onClick={list.reload}>Refresh</button>
+      <div className="row between">
+        <h1>My assigned assessments</h1>
+        <button className="ghost" onClick={list.reload}>Refresh</button>
+      </div>
       <Err text={list.error} />
-      <div className="table-wrap"><table>
-        <thead><tr><th>Case</th><th>Trade</th><th>Status</th><th /></tr></thead>
-        <tbody>{(list.data ?? []).map(c => (
-          <tr key={c.id}><td>{c.caseNumber}</td><td>{c.trade}</td><td><StatusBadge status={c.status} /></td><td><button className="ghost" onClick={() => setOpen(c.id)}>Open</button></td></tr>
-        ))}</tbody>
-      </table></div>
+      {list.data
+        ? <CaseTable cases={list.data} empty="No assessments are assigned to you yet." actions={c => <button className="ghost" onClick={() => setOpen(c.id)}>Open</button>} />
+        : !list.error && <Loading />}
     </div>
   )
 }

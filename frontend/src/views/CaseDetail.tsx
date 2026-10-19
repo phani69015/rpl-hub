@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
 import * as api from '../api'
 import * as off from '../offline'
-import { Badge, Err, StatusBadge, fmt, useAction, useLoad } from './common'
+import { Badge, CaseProgress, Err, Loading, StatusBadge, fmt, useAction, useAiEnabled, useLoad } from './common'
 
 type Props = { id: string; role: api.Me['role']; me: api.Me | null; onBack: () => void; online: boolean }
 
 export default function CaseDetail({ id, role, me, onBack, online }: Props) {
   const { data: c, error, reload, setData } = useLoad(() => api.getCase(id), [id])
   const act = useAction()
-  const aiEnabled = useLoad(api.config).data?.aiEnabled
+  const aiEnabled = useAiEnabled()
   useEffect(() => { const t = setInterval(reload, 5000); return () => clearInterval(t) }, [reload])
-  if (!c) return <div><button className="ghost" onClick={onBack}>Back</button><Err text={error} /></div>
+  if (!c) return <div><button className="ghost" onClick={onBack}>← Back</button><Err text={error} />{!error && <Loading />}</div>
 
   const apply = async (fn: () => Promise<api.CaseView>) => { const r = await act.run(fn); if (r) setData(r) }
   const staff = role !== 'WORKER'
@@ -19,10 +19,11 @@ export default function CaseDetail({ id, role, me, onBack, online }: Props) {
     <div>
       <button className="ghost" onClick={onBack}>← Back</button>
       <h1>{c.caseNumber} <StatusBadge status={c.status} /></h1>
+      <CaseProgress status={c.status} />
       <div className="card">
         <b>{c.workerName ?? 'Candidate'}</b> {c.workerPhone && `(${c.workerPhone})`}<br />
         {c.trade}, {c.experienceYears} years<div className="pre">{c.skills}</div>
-        {c.details && <div className="pre INFO">{c.details}</div>}
+        {c.details && <div className="pre muted">{c.details}</div>}
         {c.qualification && <p>Qualification: <b>{c.qualification.summary.code} v{c.qualification.summary.version}</b> – {c.qualification.summary.title}</p>}
         {c.assessorPhone && <p>Assessor: {c.assessorPhone}</p>}
       </div>
@@ -31,7 +32,7 @@ export default function CaseDetail({ id, role, me, onBack, online }: Props) {
       {c.suggestions.length > 0 && c.status !== 'DRAFT' && !c.qualification && role !== 'ASSESSOR' && (
         <>
           <h2>Suggested qualifications</h2>
-          <p className="INFO">
+          <p className="muted">
             {aiEnabled === false ? 'AI feature is turned off. These suggestions are keyword-based. ' : 'AI suggestions are advisory. '}
             An administrator confirms the qualification.
           </p>
@@ -63,12 +64,12 @@ export default function CaseDetail({ id, role, me, onBack, online }: Props) {
           <div className="ai pre">{aiEnabled === false ? 'AI feature is turned off.' : c.submission.aiSummary ?? 'No AI summary available.'}</div>
         </div>
       )}
-      {c.status === 'AWAITING_DECISION' && staff && (me?.canDecide ? <Decision onDecide={(o, r) => apply(() => api.decide(c.id, o, r))} /> : <p className="INFO">Waiting for an authorised decision-maker.</p>)}
+      {c.status === 'AWAITING_DECISION' && staff && (me?.canDecide ? <Decision onDecide={(o, r) => apply(() => api.decide(c.id, o, r))} /> : <p className="muted">Waiting for an authorised decision-maker.</p>)}
       {c.decision && (
         <div className="card">
           <h3>Final decision: {fmt(c.decision.outcome)}</h3>
           <div className="pre">{c.decision.rationale}</div>
-          <div className="INFO">Recorded by {c.decision.decidedBy} · {c.decision.decidedAt}</div>
+          <div className="muted">Recorded by {c.decision.decidedBy} · {c.decision.decidedAt}</div>
         </div>
       )}
       {((staff && ['AWAITING_DECISION', 'DECIDED'].includes(c.status)) || (role === 'WORKER' && c.status === 'DECIDED')) && (
@@ -160,7 +161,7 @@ function WorkerEvidence({ c, online, reload, apply }: { c: api.CaseView; online:
       <input type="file" accept="image/*,video/*,application/pdf,text/plain" onChange={e => { const f = e.target.files?.[0]; if (f) add(f); e.target.value = '' }} />
       <Err text={act.error} />
       {c.status === 'EVIDENCE_REQUESTED' && <button disabled={!online || act.busy || queued.length > 0} onClick={() => apply(() => api.submitEvidence(c.id))}>Submit requested evidence</button>}
-      {!c.qualification && c.status !== 'DRAFT' && <p className="INFO">You can attach evidence now; the assessor will review it.</p>}
+      {!c.qualification && c.status !== 'DRAFT' && <p className="muted">You can attach evidence now; the assessor will review it.</p>}
     </div>
   )
 }
@@ -204,7 +205,7 @@ function Assessment({ c, apply }: { c: api.CaseView; apply: (f: () => Promise<ap
             </select>
             <textarea rows={3} value={notes} onChange={e => setNotes(e.target.value)} placeholder="Observations" />
             <button onClick={() => apply(() => api.submitAssessment(c.id, rec, notes))}>Submit assessment</button>
-            <p className="INFO">All mandatory competencies must be scored before submitting.</p>
+            <p className="muted">All mandatory competencies must be scored before submitting.</p>
           </div>
         </>
       )}
@@ -222,8 +223,8 @@ function CompetencyRow({ c, k, apply }: { c: api.CaseView; k: api.Competency; ap
   return (
     <div className="card">
       <b>{k.code} – {k.title}</b> {k.mandatory ? <Badge text="mandatory" kind="warn" /> : <Badge text="optional" />}
-      {k.rubric && <div className="INFO">Rubric: {k.rubric}</div>}
-      {k.evidenceRequirements.length > 0 && <div className="INFO">Evidence required: {k.evidenceRequirements.join('; ')} ({evidence.length} attached)</div>}
+      {k.rubric && <div className="muted">Rubric: {k.rubric}</div>}
+      {k.evidenceRequirements.length > 0 && <div className="muted">Evidence required: {k.evidenceRequirements.join('; ')} ({evidence.length} attached)</div>}
       <div className="row">
         <input type="number" min={0} max={k.maxScore} value={score} onChange={e => setScore(e.target.value)} aria-label={`Score for ${k.code}`} style={{ width: '5rem' }} /> / {k.maxScore}
         <input value={comment} onChange={e => setComment(e.target.value)} placeholder="Comment" style={{ flex: 1 }} />

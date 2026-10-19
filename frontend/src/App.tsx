@@ -4,37 +4,14 @@ import { startAutoSync } from './offline'
 import Admin from './views/Admin'
 import Assessor from './views/Assessor'
 import Worker from './views/Worker'
-import { Err } from './views/common'
-
-function Login({ onDone }: { onDone: () => void }) {
-  const [phone, setPhone] = useState('')
-  const [otp, setOtp] = useState('')
-  const [sent, setSent] = useState(false)
-  const [error, setError] = useState('')
-  const run = (fn: () => Promise<unknown>) => fn().catch(e => setError(e.message))
-  return (
-    <div className="card auth">
-      <h1>RPL Hub</h1>
-      <p className="INFO" style={{ textAlign: 'center' }}>Sign in with your phone number</p>
-      <div className="row">
-        <input value={phone} onChange={e => setPhone(e.target.value)} placeholder="Phone, e.g. +919999999999" inputMode="tel" />
-        <button onClick={() => run(async () => { setError(''); await api.requestOtp(phone); setSent(true) })}>Send OTP</button>
-      </div>
-      {sent && (
-        <div className="row">
-          <input value={otp} onChange={e => setOtp(e.target.value)} placeholder="OTP (mock: 123456)" inputMode="numeric" />
-          <button onClick={() => run(async () => { await api.verifyOtp(phone, otp); onDone() })}>Verify</button>
-        </div>
-      )}
-      <Err text={error} />
-    </div>
-  )
-}
+import Landing from './views/Landing'
+import { Badge, Loading, useAiEnabled } from './views/common'
 
 export default function App() {
   const [signedIn, setSignedIn] = useState(api.isSignedIn())
   const [me, setMe] = useState<api.Me>()
   const [online, setOnline] = useState(navigator.onLine)
+  const aiEnabled = useAiEnabled()
 
   useEffect(() => {
     const on = () => setOnline(true), off = () => setOnline(false)
@@ -44,18 +21,26 @@ export default function App() {
   useEffect(() => { if (signedIn) api.me().then(setMe).catch(() => undefined) }, [signedIn])
   useEffect(() => (signedIn ? startAutoSync(() => undefined) : undefined), [signedIn])
 
-  if (!signedIn) return <Login onDone={() => setSignedIn(true)} />
-  if (!me) return <p>Loading…</p>
+  if (!signedIn) return <Landing onDone={() => setSignedIn(true)} />
+  if (!me) return <Loading />
   return (
     <>
       <header className="topbar">
-        <span className="brand">RPL Hub<small>{me.role.toLowerCase()} · {me.phone}</small></span>
-        <button className="ghost" onClick={() => { api.signOut(); setSignedIn(false); setMe(undefined) }}>Sign out</button>
+        <div className="topbar-inner">
+          <span className="brand"><span className="logo" aria-hidden>R</span>RPL Hub</span>
+          <div className="user">
+            {aiEnabled === false && <Badge text="AI feature is turned off" kind="off" />}
+            <div className="user-meta">{me.phone}<small>{me.role.toLowerCase()}</small></div>
+            <button className="ghost" onClick={() => { api.signOut(); setSignedIn(false); setMe(undefined) }}>Sign out</button>
+          </div>
+        </div>
       </header>
-      {!online && <div className="banner">You are offline. Declarations and evidence are saved on this device and sync when you reconnect.</div>}
-      {me.role === 'ADMIN' && <Admin me={me} />}
-      {me.role === 'ASSESSOR' && <Assessor me={me} />}
-      {me.role === 'WORKER' && <Worker online={online} />}
+      <main>
+        {!online && <div className="banner">You are offline. Declarations and evidence are saved on this device and sync when you reconnect.</div>}
+        {me.role === 'ADMIN' && <Admin me={me} />}
+        {me.role === 'ASSESSOR' && <Assessor me={me} />}
+        {me.role === 'WORKER' && <Worker online={online} />}
+      </main>
     </>
   )
 }

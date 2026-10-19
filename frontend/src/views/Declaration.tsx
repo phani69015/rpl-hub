@@ -30,7 +30,7 @@ export default function Declaration({ draft, onDone }: { draft: LocalDraft; onDo
         <button onClick={() => save(true)}>Submit for assessment</button>
         <button className="ghost" onClick={onDone}>Cancel</button>
       </div>
-      <p className="INFO">Saved on this device first. It syncs automatically when you are online.</p>
+      <p className="muted">Saved on this device first. It syncs automatically when you are online.</p>
     </div>
   )
 }
