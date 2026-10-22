@@ -1,17 +1,4 @@
 services:
-  postgres:
-    image: postgres:16
-    environment:
-      POSTGRES_DB: rplhub
-      POSTGRES_USER: rplhub
-      POSTGRES_PASSWORD: rplhub
-    ports: ["5432:5432"]
-    volumes: [pgdata:/var/lib/postgresql/data]
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U rplhub"]
-      interval: 5s
-      retries: 10
-
   # Host ports 7234/8234 avoid clashing with another Temporal dev server on 7233/8233.
   # Not used by the app until the workflow phase.
   temporal:
@@ -21,5 +8,4 @@ services:
     volumes: [temporaldata:/data]
 
 volumes:
-  pgdata:
   temporaldata:

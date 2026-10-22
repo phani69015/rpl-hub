@@ -18,8 +18,13 @@ import org.springframework.context.annotation.Configuration;
 public class TemporalConfig {
 
     @Bean(destroyMethod = "shutdown")
-    WorkflowServiceStubs workflowServiceStubs(@Value("${app.temporal.target}") String target) {
-        return WorkflowServiceStubs.newServiceStubs(WorkflowServiceStubsOptions.newBuilder().setTarget(target).build());
+    WorkflowServiceStubs workflowServiceStubs(@Value("${app.temporal.target}") String target,
+                                              @Value("${app.temporal.api-key}") String apiKey) {
+        var options = WorkflowServiceStubsOptions.newBuilder().setTarget(target);
+        if (!apiKey.isBlank()) {
+            options.setEnableHttps(true).addApiKey(() -> apiKey);
+        }
+        return WorkflowServiceStubs.newServiceStubs(options.build());
     }
 
     @Bean
@@ -28,7 +33,7 @@ public class TemporalConfig {
             WorkflowClientOptions.newBuilder().setNamespace(namespace).build());
     }
 
-    /** Runs the workflow worker inside this service. Because state is in Temporal and Postgres, a restart resumes work. */
+    /** Runs the workflow worker inside this service. Because state is in Temporal and SQLite, a restart resumes work. */
     @Bean
     @ConditionalOnProperty(name = "app.temporal.worker-enabled", havingValue = "true", matchIfMissing = true)
     SmartLifecycle caseWorker(WorkflowClient client, CaseActivities activities) {

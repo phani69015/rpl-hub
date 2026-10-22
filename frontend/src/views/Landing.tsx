@@ -106,6 +106,14 @@ export default function Landing({ onDone }: { onDone: () => void }) {
         </div>
       </section>
 
+      <section className="band alt">
+        <h2>Open to verifying bodies</h2>
+        <p className="lead" style={{ textAlign: 'center', maxWidth: 720, margin: '0 auto' }}>
+          RPL Hub is open to AICTE and any other government skill-verification or certification body. Authorised
+          organisations can review assessments, audit trails and outcomes to verify the skills recorded here.
+        </p>
+      </section>
+
       <footer className="land-foot muted">RPL Hub · Recognising skills that were learned on the job</footer>
     </div>
   )

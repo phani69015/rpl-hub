@@ -25,11 +25,11 @@ public class QualificationRepository {
         this.jdbc = jdbc;
     }
 
-    /** Creates the qualification if needed and row-locks it, serialising concurrent imports of the same code. */
+    /** Creates the qualification if needed; the surrounding write transaction serialises concurrent imports. */
     public UUID lockQualification(String code) {
         jdbc.sql("insert into qualification(id, code) values (?,?) on conflict (code) do nothing")
             .params(UUID.randomUUID(), code).update();
-        return jdbc.sql("select id from qualification where code = ? for update").param(code)
+        return jdbc.sql("select id from qualification where code = ?").param(code)
             .query(UUID.class).single();
     }
 
@@ -98,9 +98,9 @@ public class QualificationRepository {
     private List<CompetencyView> competencies(UUID versionId) {
         return jdbc.sql("select id, code, title, mandatory, max_score, rubric from competency where version_id = ? order by position")
             .param(versionId)
-            .query((rs, i) -> new CompetencyView(rs.getObject("id", UUID.class), rs.getString("code"), rs.getString("title"),
+            .query((rs, i) -> new CompetencyView(UUID.fromString(rs.getString("id")), rs.getString("code"), rs.getString("title"),
                 rs.getBoolean("mandatory"), rs.getInt("max_score"), rs.getString("rubric"),
-                evidenceRequirements(rs.getObject("id", UUID.class))))
+                evidenceRequirements(UUID.fromString(rs.getString("id")))))
             .list();
     }
 
@@ -110,7 +110,7 @@ public class QualificationRepository {
     }
 
     public Optional<LockedVersion> lockVersion(UUID id) {
-        return jdbc.sql("select id, qualification_id, version, status, content_hash from qualification_version where id = ? for update")
+        return jdbc.sql("select id, qualification_id, version, status, content_hash from qualification_version where id = ?")
             .param(id).query(LockedVersion.class).optional();
     }
 
@@ -132,7 +132,7 @@ public class QualificationRepository {
     public void publish(UUID id, UUID qualificationId, UUID actor) {
         jdbc.sql("update qualification_version set status = 'SUPERSEDED' where qualification_id = ? and status = 'PUBLISHED'")
             .param(qualificationId).update();
-        jdbc.sql("update qualification_version set status = 'PUBLISHED', published_by = ?, published_at = now() where id = ?")
+        jdbc.sql("update qualification_version set status = 'PUBLISHED', published_by = ?, published_at = strftime('%Y-%m-%dT%H:%M:%fZ','now') where id = ?")
             .params(actor, id).update();
     }
 

@@ -157,7 +157,7 @@ This is a proposed stack and can be changed based on team experience.
 * Frontend: React Progressive Web App (PWA)
 * Backend: Java with springbok 
 * Database: PostgreSQL
-* AI matching: Anthropic client 
+* AI matching: Groq client 
 * Durable execution: Temporal java sdk
 * Offline capture: PWA local storage or IndexedDB with synchronization logic
 * Reports: HTML/PDF report generation - hbs files for templates

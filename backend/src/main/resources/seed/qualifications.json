@@ -1,0 +1,148 @@
+[
+  {"qualification_code": "ELEC-L4-001", "title": "Electrician (Domestic)", "trade": "Electrical", "nsqf_level": 4, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "C1", "competency_title": "Install domestic wiring", "mandatory": true, "max_score": 10, "rubric": "0-3 unsafe; 4-6 needs supervision; 7-10 independent", "evidence_requirements": ["Photo of completed wiring", "Supervisor statement"]},
+     {"competency_code": "C2", "competency_title": "Test and commission circuits", "mandatory": true, "max_score": 10, "rubric": "0-3 unsafe; 4-6 needs supervision; 7-10 independent", "evidence_requirements": ["Test readings log"]},
+     {"competency_code": "C3", "competency_title": "Apply electrical safety practices", "mandatory": true, "max_score": 5, "rubric": "0-2 unsafe; 3-5 safe", "evidence_requirements": ["Video of safety demonstration"]},
+     {"competency_code": "C4", "competency_title": "Diagnose and repair electrical faults", "mandatory": false, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Fault repair job card"]}
+   ]},
+  {"qualification_code": "PLUMB-L3-001", "title": "Plumber (General)", "trade": "Plumbing", "nsqf_level": 3, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "P1", "competency_title": "Install pipework", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Photo of installed pipework"]},
+     {"competency_code": "P2", "competency_title": "Fit sanitary fixtures and fittings", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Photo of fitted fixtures"]},
+     {"competency_code": "P3", "competency_title": "Detect and repair leaks", "mandatory": true, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Supervisor statement"]},
+     {"competency_code": "P4", "competency_title": "Pressure test water lines", "mandatory": false, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Pressure test record"]}
+   ]},
+  {"qualification_code": "CARP-L2-001", "title": "Carpenter", "trade": "Carpentry", "nsqf_level": 2, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "CA1", "competency_title": "Measure, mark and cut timber", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 accurate", "evidence_requirements": ["Photo of cut components"]},
+     {"competency_code": "CA2", "competency_title": "Assemble joints and frames", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 accurate", "evidence_requirements": ["Photo of finished joint"]},
+     {"competency_code": "CA3", "competency_title": "Fit doors and windows", "mandatory": false, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Photo of installed door"]},
+     {"competency_code": "CA4", "competency_title": "Use hand and power tools safely", "mandatory": true, "max_score": 5, "rubric": "0-2 unsafe; 3-5 safe", "evidence_requirements": ["Supervisor statement"]}
+   ]},
+  {"qualification_code": "WELD-L4-001", "title": "Welder (Arc)", "trade": "Welding", "nsqf_level": 4, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "W1", "competency_title": "Prepare joints and set up equipment", "mandatory": true, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Photo of prepared joint"]},
+     {"competency_code": "W2", "competency_title": "Perform arc welding in flat and horizontal positions", "mandatory": true, "max_score": 10, "rubric": "0-3 defective; 4-6 acceptable; 7-10 sound", "evidence_requirements": ["Photo of weld bead", "Weld test report"]},
+     {"competency_code": "W3", "competency_title": "Inspect welds and correct defects", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Inspection record"]},
+     {"competency_code": "W4", "competency_title": "Follow welding safety practices", "mandatory": true, "max_score": 5, "rubric": "0-2 unsafe; 3-5 safe", "evidence_requirements": ["Video of safety demonstration"]}
+   ]},
+  {"qualification_code": "MASON-L3-001", "title": "Mason (General)", "trade": "Construction", "nsqf_level": 3, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "M1", "competency_title": "Lay brickwork", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Photo of wall", "Supervisor statement"]},
+     {"competency_code": "M2", "competency_title": "Mix mortar and concrete", "mandatory": true, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Demonstration video"]},
+     {"competency_code": "M3", "competency_title": "Plaster and finish surfaces", "mandatory": false, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Photo of plastered wall"]},
+     {"competency_code": "M4", "competency_title": "Read drawings and set out work", "mandatory": false, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Marked-up drawing"]}
+   ]},
+  {"qualification_code": "FIT-L4-001", "title": "Fitter (Mechanical Assembly)", "trade": "Mechanical", "nsqf_level": 4, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "F1", "competency_title": "Read engineering drawings", "mandatory": true, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Annotated drawing"]},
+     {"competency_code": "F2", "competency_title": "File, drill and measure to tolerance", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 accurate", "evidence_requirements": ["Photo of finished part", "Inspection record"]},
+     {"competency_code": "F3", "competency_title": "Assemble and align mechanical components", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 accurate", "evidence_requirements": ["Photo of assembly"]},
+     {"competency_code": "F4", "competency_title": "Maintain tools and follow workshop safety", "mandatory": true, "max_score": 5, "rubric": "0-2 unsafe; 3-5 safe", "evidence_requirements": ["Supervisor statement"]}
+   ]},
+  {"qualification_code": "PAINT-L3-001", "title": "Painter and Decorator", "trade": "Painting", "nsqf_level": 3, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "PA1", "competency_title": "Prepare surfaces for painting", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Photo of prepared surface"]},
+     {"competency_code": "PA2", "competency_title": "Apply primer and paint by brush and roller", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Photo of finished wall"]},
+     {"competency_code": "PA3", "competency_title": "Mix and match colours", "mandatory": false, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Colour sample photo"]},
+     {"competency_code": "PA4", "competency_title": "Work safely at height", "mandatory": true, "max_score": 5, "rubric": "0-2 unsafe; 3-5 safe", "evidence_requirements": ["Supervisor statement"]}
+   ]},
+  {"qualification_code": "HVAC-L4-001", "title": "Air Conditioning Technician", "trade": "HVAC", "nsqf_level": 4, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "H1", "competency_title": "Install split and window air conditioners", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Photo of installation", "Job card"]},
+     {"competency_code": "H2", "competency_title": "Handle refrigerant and charge systems", "mandatory": true, "max_score": 10, "rubric": "0-3 unsafe; 4-6 needs supervision; 7-10 independent", "evidence_requirements": ["Gauge readings log"]},
+     {"competency_code": "H3", "competency_title": "Diagnose and repair cooling faults", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Service report"]},
+     {"competency_code": "H4", "competency_title": "Perform preventive maintenance", "mandatory": false, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Maintenance checklist"]}
+   ]},
+  {"qualification_code": "AUTO-L4-001", "title": "Automotive Service Technician", "trade": "Automotive", "nsqf_level": 4, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "AU1", "competency_title": "Carry out routine vehicle servicing", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Service job card"]},
+     {"competency_code": "AU2", "competency_title": "Diagnose engine faults", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Diagnostic report"]},
+     {"competency_code": "AU3", "competency_title": "Service brakes and suspension", "mandatory": true, "max_score": 10, "rubric": "0-3 unsafe; 4-6 needs supervision; 7-10 independent", "evidence_requirements": ["Photo of completed work"]},
+     {"competency_code": "AU4", "competency_title": "Follow workshop safety and waste handling", "mandatory": true, "max_score": 5, "rubric": "0-2 unsafe; 3-5 safe", "evidence_requirements": ["Supervisor statement"]}
+   ]},
+  {"qualification_code": "TAIL-L3-001", "title": "Tailor (Stitching Machine Operator)", "trade": "Tailoring", "nsqf_level": 3, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "T1", "competency_title": "Take measurements and draft patterns", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 accurate", "evidence_requirements": ["Photo of pattern"]},
+     {"competency_code": "T2", "competency_title": "Cut fabric economically", "mandatory": true, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Photo of cut pieces"]},
+     {"competency_code": "T3", "competency_title": "Stitch garments with a sewing machine", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Photo of finished garment"]},
+     {"competency_code": "T4", "competency_title": "Finish and press garments", "mandatory": false, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Photo of pressed garment"]}
+   ]},
+  {"qualification_code": "SOLAR-L4-001", "title": "Solar PV Installation Technician", "trade": "Solar", "nsqf_level": 4, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "S1", "competency_title": "Survey site and plan panel layout", "mandatory": true, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Site survey sheet"]},
+     {"competency_code": "S2", "competency_title": "Mount panels and structures", "mandatory": true, "max_score": 10, "rubric": "0-3 unsafe; 4-6 needs supervision; 7-10 independent", "evidence_requirements": ["Photo of mounted array"]},
+     {"competency_code": "S3", "competency_title": "Wire and commission inverter and DC/AC circuits", "mandatory": true, "max_score": 10, "rubric": "0-3 unsafe; 4-6 needs supervision; 7-10 independent", "evidence_requirements": ["Commissioning report"]},
+     {"competency_code": "S4", "competency_title": "Work safely at height and with live circuits", "mandatory": true, "max_score": 5, "rubric": "0-2 unsafe; 3-5 safe", "evidence_requirements": ["Video of safety demonstration"]}
+   ]},
+  {"qualification_code": "ELECN-L4-001", "title": "Consumer Electronics Repair Technician", "trade": "Electronics", "nsqf_level": 4, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "EL1", "competency_title": "Identify and test electronic components", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Test readings log"]},
+     {"competency_code": "EL2", "competency_title": "Solder and desolder components", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Photo of soldered board"]},
+     {"competency_code": "EL3", "competency_title": "Troubleshoot and repair devices", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Repair job card"]},
+     {"competency_code": "EL4", "competency_title": "Follow ESD and electrical safety", "mandatory": true, "max_score": 5, "rubric": "0-2 unsafe; 3-5 safe", "evidence_requirements": ["Supervisor statement"]}
+   ]},
+  {"qualification_code": "CNC-L4-001", "title": "CNC Machine Operator", "trade": "Machining", "nsqf_level": 4, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "N1", "competency_title": "Set up CNC lathe or milling machine", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Setup sheet"]},
+     {"competency_code": "N2", "competency_title": "Read drawings and edit simple programs", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Program printout"]},
+     {"competency_code": "N3", "competency_title": "Machine parts to tolerance and inspect", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 accurate", "evidence_requirements": ["Inspection report"]},
+     {"competency_code": "N4", "competency_title": "Follow machine shop safety", "mandatory": true, "max_score": 5, "rubric": "0-2 unsafe; 3-5 safe", "evidence_requirements": ["Supervisor statement"]}
+   ]},
+  {"qualification_code": "FOOD-L3-001", "title": "Assistant Cook (Food Production)", "trade": "Cooking", "nsqf_level": 3, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "FP1", "competency_title": "Prepare ingredients and mise en place", "mandatory": true, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Photo of prepared ingredients"]},
+     {"competency_code": "FP2", "competency_title": "Cook standard dishes to quality", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Photo of plated dishes", "Supervisor statement"]},
+     {"competency_code": "FP3", "competency_title": "Maintain food hygiene and safety", "mandatory": true, "max_score": 10, "rubric": "0-3 unsafe; 4-6 adequate; 7-10 consistent", "evidence_requirements": ["Hygiene checklist"]},
+     {"competency_code": "FP4", "competency_title": "Control portions and kitchen waste", "mandatory": false, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Supervisor statement"]}
+   ]},
+  {"qualification_code": "BEAUTY-L3-001", "title": "Beauty Therapist", "trade": "Beauty", "nsqf_level": 3, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "B1", "competency_title": "Consult clients and assess skin and hair", "mandatory": true, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Sample consultation form"]},
+     {"competency_code": "B2", "competency_title": "Perform facial, hair and nail services", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Client testimonial", "Photo of work"]},
+     {"competency_code": "B3", "competency_title": "Sanitise tools and maintain hygiene", "mandatory": true, "max_score": 10, "rubric": "0-3 unsafe; 4-6 adequate; 7-10 consistent", "evidence_requirements": ["Supervisor statement"]}
+   ]},
+  {"qualification_code": "HK-L2-001", "title": "Housekeeping Attendant", "trade": "Housekeeping", "nsqf_level": 2, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "HK1", "competency_title": "Clean rooms and public areas", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Supervisor statement"]},
+     {"competency_code": "HK2", "competency_title": "Make beds and replenish supplies", "mandatory": true, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Photo of prepared room"]},
+     {"competency_code": "HK3", "competency_title": "Handle chemicals and equipment safely", "mandatory": true, "max_score": 5, "rubric": "0-2 unsafe; 3-5 safe", "evidence_requirements": ["Supervisor statement"]}
+   ]},
+  {"qualification_code": "DRV-L3-001", "title": "Light Motor Vehicle Driver", "trade": "Driving", "nsqf_level": 3, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "D1", "competency_title": "Carry out pre-trip vehicle checks", "mandatory": true, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Pre-trip checklist"]},
+     {"competency_code": "D2", "competency_title": "Drive safely in traffic and follow rules", "mandatory": true, "max_score": 10, "rubric": "0-3 unsafe; 4-6 adequate; 7-10 safe", "evidence_requirements": ["Valid driving licence", "Employer reference"]},
+     {"competency_code": "D3", "competency_title": "Handle breakdowns and emergencies", "mandatory": true, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Supervisor statement"]}
+   ]},
+  {"qualification_code": "HC-L3-001", "title": "General Duty Assistant (Healthcare)", "trade": "Healthcare", "nsqf_level": 3, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "HC1", "competency_title": "Assist patients with daily living", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Employer reference"]},
+     {"competency_code": "HC2", "competency_title": "Measure and record vital signs", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 accurate", "evidence_requirements": ["Sample vitals chart"]},
+     {"competency_code": "HC3", "competency_title": "Follow infection control and biomedical waste rules", "mandatory": true, "max_score": 5, "rubric": "0-2 unsafe; 3-5 safe", "evidence_requirements": ["Supervisor statement"]}
+   ]},
+  {"qualification_code": "IT-L4-001", "title": "Computer Hardware and Networking Technician", "trade": "IT", "nsqf_level": 4, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "IT1", "competency_title": "Assemble and troubleshoot computer hardware", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Photo of assembled system"]},
+     {"competency_code": "IT2", "competency_title": "Install operating systems and software", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Installation log"]},
+     {"competency_code": "IT3", "competency_title": "Set up and test a local network", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Network diagram", "Test results"]}
+   ]},
+  {"qualification_code": "SEC-L2-001", "title": "Unarmed Security Guard", "trade": "Security", "nsqf_level": 2, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "SG1", "competency_title": "Control access and patrol premises", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Employer reference"]},
+     {"competency_code": "SG2", "competency_title": "Respond to fire and emergency situations", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Training certificate"]},
+     {"competency_code": "SG3", "competency_title": "Maintain logs and report incidents", "mandatory": false, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Sample logbook page"]}
+   ]},
+  {"qualification_code": "AGRI-L3-001", "title": "Dairy Farmer / Entrepreneur", "trade": "Agriculture", "nsqf_level": 3, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "AG1", "competency_title": "Feed and care for dairy animals", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Photo of livestock", "Supervisor statement"]},
+     {"competency_code": "AG2", "competency_title": "Milk animals hygienically and handle milk", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Demonstration video"]},
+     {"competency_code": "AG3", "competency_title": "Maintain herd health and records", "mandatory": false, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Herd record book"]}
+   ]},
+  {"qualification_code": "TILE-L3-001", "title": "Tile Fitter", "trade": "Tiling", "nsqf_level": 3, "source": "Default catalogue",
+   "competencies": [
+     {"competency_code": "TI1", "competency_title": "Prepare floors and walls for tiling", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 good", "evidence_requirements": ["Photo of prepared surface"]},
+     {"competency_code": "TI2", "competency_title": "Set out, cut and lay tiles", "mandatory": true, "max_score": 10, "rubric": "0-3 poor; 4-6 adequate; 7-10 accurate", "evidence_requirements": ["Photo of tiled area"]},
+     {"competency_code": "TI3", "competency_title": "Grout and finish joints", "mandatory": false, "max_score": 5, "rubric": "0-2 poor; 3-5 good", "evidence_requirements": ["Photo of finished work"]}
+   ]}
+]

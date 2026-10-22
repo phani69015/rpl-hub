@@ -24,7 +24,7 @@ public class ProfileRepository {
         jdbc.sql("""
                 insert into worker_profile(user_id, full_name, primary_trade, years_experience, skills) values (?,?,?,?,?)
                 on conflict (user_id) do update set full_name = excluded.full_name, primary_trade = excluded.primary_trade,
-                  years_experience = excluded.years_experience, skills = excluded.skills, updated_at = now()""")
+                  years_experience = excluded.years_experience, skills = excluded.skills, updated_at = strftime('%Y-%m-%dT%H:%M:%fZ','now')""")
             .params(userId, p.fullName().trim(), p.primaryTrade(), p.yearsExperience(), p.skills()).update();
     }
 }

@@ -1,23 +1,27 @@
 spring:
   config:
     import: optional:file:./.env[.properties]
-  datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/rplhub}
-    username: ${DB_USER:rplhub}
-    password: ${DB_PASSWORD:rplhub}
   servlet:
     multipart:
       max-file-size: 25MB
       max-request-size: 26MB
+  threads:
+    virtual:
+      enabled: true
 
 server:
   error:
     include-message: always
 
 app:
+  seed:
+    enabled: ${SEED_DEFAULT_TRADES:true}   # import + publish the bundled default trades when no qualifications exist
+  db:
+    path: ${DB_PATH:./data/rplhub.db}   # SQLite file; created on first start
   temporal:
     target: ${TEMPORAL_TARGET:localhost:7234}
-    namespace: default
+    namespace: ${TEMPORAL_NAMESPACE:default}
+    api-key: ${TEMPORAL_API_KEY:}   # set for Temporal Cloud; enables TLS
     worker-enabled: true
   evidence:
     dir: ${EVIDENCE_DIR:./data/evidence}
@@ -32,7 +36,8 @@ app:
   cors:
     allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}   # comma-separated frontend origins
   ai:
-    enabled: ${AI_ENABLED:true}   # false: no Anthropic calls, no AI summary; matching falls back to keywords
-  anthropic:
-    api-key: ${ANTHROPIC_API_KEY:}
-    model: ${ANTHROPIC_MODEL:claude-sonnet-4-5}
+    enabled: ${AI_ENABLED:true}   # false: no Groq calls, no AI summary; matching falls back to keywords
+  groq:
+    api-key: ${GROQ_API_KEY}
+    model: ${GROQ_MODEL:openai/gpt-oss-20b}
+    base-url: https://api.groq.com/openai/v1

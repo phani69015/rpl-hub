@@ -40,7 +40,7 @@ public class UserRepository {
 
     public List<AssessorView> assessors() {
         return jdbc.sql("select id, phone, can_decide from app_user where role = 'ASSESSOR' order by phone")
-            .query((rs, i) -> new AssessorView(rs.getObject("id", UUID.class), rs.getString("phone"), rs.getBoolean("can_decide"), trades(rs.getObject("id", UUID.class))))
+            .query((rs, i) -> new AssessorView(UUID.fromString(rs.getString("id")), rs.getString("phone"), rs.getBoolean("can_decide"), trades(UUID.fromString(rs.getString("id")))))
             .list();
     }
 

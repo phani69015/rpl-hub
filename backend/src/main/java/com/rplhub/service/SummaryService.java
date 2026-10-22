@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 import org.springframework.stereotype.Service;
 
-/** Advisory AI summary of the assessor's findings. Empty when AI is disabled or no Anthropic key is configured. */
+/** Advisory AI summary of the assessor's findings. Empty when AI is disabled or no Groq key is configured. */
 @Service
 public class SummaryService {
 

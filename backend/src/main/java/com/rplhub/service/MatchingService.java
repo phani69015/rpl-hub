@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 /**
  * Suggests published qualifications for a worker's declaration. Advisory only: output is validated against the
  * candidate list, so the model cannot introduce a qualification that is not approved and published.
- * Falls back to a clearly labelled keyword match when AI is disabled or no Anthropic key is configured.
+ * Falls back to a clearly labelled keyword match when AI is disabled or no Groq key is configured.
  */
 @Service
 public class MatchingService {

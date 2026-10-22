@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""End-to-end happy path + guard checks against a running backend (needs Postgres + Temporal up).
+"""End-to-end happy path + guard checks against a running backend (needs Temporal up).
 Usage: python3 scripts/e2e.py   (BASE env overrides http://localhost:8080)"""
 import json, os, sys, time, uuid, urllib.request, urllib.error
 

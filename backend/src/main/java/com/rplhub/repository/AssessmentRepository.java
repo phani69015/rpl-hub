@@ -29,7 +29,7 @@ public class AssessmentRepository {
         jdbc.sql("""
                 insert into competency_score(case_id, competency_id, score, comment, updated_by) values (?,?,?,?,?)
                 on conflict (case_id, competency_id) do update set score = excluded.score, comment = excluded.comment,
-                  updated_by = excluded.updated_by, updated_at = now()""")
+                  updated_by = excluded.updated_by, updated_at = strftime('%Y-%m-%dT%H:%M:%fZ','now')""")
             .params(caseId, competencyId, score, comment, actor).update();
     }
 
@@ -54,7 +54,7 @@ public class AssessmentRepository {
     }
 
     public void fulfilEvidenceRequests(UUID caseId) {
-        jdbc.sql("update evidence_request set fulfilled_at = now() where case_id = ? and fulfilled_at is null").param(caseId).update();
+        jdbc.sql("update evidence_request set fulfilled_at = strftime('%Y-%m-%dT%H:%M:%fZ','now') where case_id = ? and fulfilled_at is null").param(caseId).update();
     }
 
     public List<EvidenceRequestView> evidenceRequests(UUID caseId) {
@@ -77,7 +77,7 @@ public class AssessmentRepository {
     }
 
     public void storeAiSummary(UUID caseId, String summary) {
-        jdbc.sql("update assessment_submission set ai_summary = ?, ai_generated_at = now() where case_id = ?").params(summary, caseId).update();
+        jdbc.sql("update assessment_submission set ai_summary = ?, ai_generated_at = strftime('%Y-%m-%dT%H:%M:%fZ','now') where case_id = ?").params(summary, caseId).update();
     }
 
     public Optional<String> decisionOutcome(UUID caseId) {

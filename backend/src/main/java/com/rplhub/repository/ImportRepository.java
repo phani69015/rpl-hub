@@ -55,7 +55,7 @@ public class ImportRepository {
     }
 
     private List<Issue> issues(UUID batchId) {
-        return jdbc.sql("select row_number, qualification_code, severity, field, message from import_issue where batch_id = ? order by row_number nulls last, severity")
+        return jdbc.sql("select row_number, qualification_code, severity, field, message from import_issue where batch_id = ? order by row_number is null, row_number, severity")
             .param(batchId).query(Issue.class).list();
     }
 }

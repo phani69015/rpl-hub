@@ -27,21 +27,21 @@ public class AuditRepository {
         } catch (JsonProcessingException e) {
             throw new IllegalArgumentException(e);
         }
-        jdbc.sql("insert into audit_event(id, actor_id, action, entity_type, entity_id, detail) values (?,?,?,?,?,cast(? as jsonb))")
+        jdbc.sql("insert into audit_event(id, actor_id, action, entity_type, entity_id, detail) values (?,?,?,?,?,?)")
             .params(UUID.randomUUID(), actor, action, entityType, String.valueOf(entityId), json)
             .update();
     }
 
     public List<Map<String, Object>> recent() {
         return jdbc.sql("""
-                select a.created_at, a.action, u.phone as actor, a.entity_type, a.entity_id, a.detail::text as detail
+                select a.created_at, a.action, u.phone as actor, a.entity_type, a.entity_id, a.detail
                 from audit_event a left join app_user u on u.id = a.actor_id order by a.created_at desc limit 200""")
             .query().listOfRows();
     }
 
     public List<Map<String, Object>> forEntity(UUID entityId) {
         return jdbc.sql("""
-                select a.created_at, a.action, u.phone as actor, a.detail::text as detail from audit_event a
+                select a.created_at, a.action, u.phone as actor, a.detail from audit_event a
                 left join app_user u on u.id = a.actor_id where a.entity_id = ? order by a.created_at, a.id""")
             .param(entityId.toString()).query().listOfRows();
     }
